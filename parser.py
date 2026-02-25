@@ -4,8 +4,8 @@ from urllib.parse import urlparse
 
 # --- НАСТРОЙКИ ---
 WHITE_DOMAINS = ['yandex', 'vk.com', 'wb', 'gosuslugi', 'tinkoff', 'ok.ru', 'ozon', 'zoom.us', 'vkit.me', 'avito', 'mail', 'vk', 'ok', 'rzd', 'x5', 'alfabank', 'max', '2gis', 'mts', 'beeline', 't2', 'kinopoisk', 'sber', 'gov', 'duma', 'pochta', 'rbc', 'rutube', 'ivi', 'kion', 'magnit']
-CHECK_TIMEOUT = 3
-MAX_THREADS = 60
+CHECK_TIMEOUT = 2
+MAX_THREADS = 80
 
 def safe_base64_decode(s):
     """Декодирует base64 с исправлением длины строки"""
