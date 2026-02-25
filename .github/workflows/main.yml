@@ -1,0 +1,35 @@
+name: VPN Auto Update
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Запуск каждые 6 часов
+  workflow_dispatch:      # Кнопка ручного запуска
+
+permissions:
+  contents: write         # Разрешение на запись файлов в репозиторий
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run parser
+        run: python parser.py
+
+      - name: Push results
+        run: |
+          git config --global user.name "VPN-Robot"
+          git config --global user.email "robot@github.com"
+          git add data/*.txt
+          git commit -m "Updated keys: $(date)" || exit 0
+          git push
